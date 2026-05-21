@@ -1,0 +1,88 @@
+{
+  "exhibitions": [
+    {
+      "id": "mmca-001",
+      "name": "미디어 아트의 경계: 디지털 시대의 창의성",
+      "museum": "국립현대미술관",
+      "location": "서울시 종로구",
+      "startDate": "2026-05-15",
+      "endDate": "2026-08-30",
+      "description": "비디오, 설치, 인터랙티브 아트를 통해 디지털 시대의 예술적 실험을 조망합니다.",
+      "curator": "이혜영",
+      "artists": ["김아타", "박석준", "정은영", "황보람"],
+      "genres": ["미디어 아트", "설치미술", "인터랙티브"],
+      "imageUrl": "https://via.placeholder.com/300x400?text=MMCA+Exhibition",
+      "link": "https://www.moma.go.kr"
+    },
+    {
+      "id": "sma-001",
+      "name": "한국 현대미술의 여성 화가들",
+      "museum": "서울시립미술관",
+      "location": "서울시 종로구",
+      "startDate": "2026-06-01",
+      "endDate": "2026-09-15",
+      "description": "1960년대부터 현재까지 한국 현대미술을 주도한 여성 작가들의 대표작을 한 자리에 만날 수 있습니다.",
+      "curator": "박준영",
+      "artists": ["이순신", "김현옥", "박소영", "이미숙"],
+      "genres": ["회화", "조각", "판화"],
+      "imageUrl": "https://via.placeholder.com/300x400?text=Seoul+Museum",
+      "link": "https://www.seoulsolution.or.kr"
+    },
+    {
+      "id": "leeum-001",
+      "name": "동양의 아름다움: 전통과 현대의 만남",
+      "museum": "삼성미술관 Leeum",
+      "location": "서울시 강남구",
+      "startDate": "2026-05-20",
+      "endDate": "2026-10-31",
+      "description": "한국, 중국, 일본의 전통 미술과 현대 미술의 대화를 통해 동양 미학의 본질을 탐구합니다.",
+      "curator": "최준호",
+      "artists": ["박영미", "이준용", "강소영", "임지순"],
+      "genres": ["동양화", "서예", "도예", "현대미술"],
+      "imageUrl": "https://via.placeholder.com/300x400?text=Leeum",
+      "link": "https://www.leeum.org"
+    },
+    {
+      "id": "ng-001",
+      "name": "추상의 언어: 기하학적 형태의 진화",
+      "museum": "국립중앙박물관",
+      "location": "서울시 용산구",
+      "startDate": "2026-07-01",
+      "endDate": "2026-09-30",
+      "description": "추상미술의 역사에서 기하학적 형태가 가지는 의미와 변화를 추적합니다.",
+      "curator": "손지은",
+      "artists": ["최배달", "이불", "정상화", "유근택"],
+      "genres": ["추상미술", "기하학적 형태", "설치미술"],
+      "imageUrl": "https://via.placeholder.com/300x400?text=National+Museum",
+      "link": "https://www.museum.go.kr"
+    },
+    {
+      "id": "gallery-001",
+      "name": "신진작가 발굴 전시: 미래의 거장들",
+      "museum": "갤러리 현대",
+      "location": "서울시 강남구",
+      "startDate": "2026-06-15",
+      "endDate": "2026-08-15",
+      "description": "신진 작가 12인의 다양한 작업세계를 통해 현대미술의 새로운 흐름을 감지합니다.",
+      "curator": "오주현",
+      "artists": ["김우진", "박지혜", "이준석", "정민지"],
+      "genres": ["혼합매체", "회화", "영상", "조각"],
+      "imageUrl": "https://via.placeholder.com/300x400?text=Gallery+Hyundai",
+      "link": "https://www.galleryhyundai.com"
+    },
+    {
+      "id": "project-001",
+      "name": "환경과 예술: 지속 가능한 미래를 위한 창작",
+      "museum": "아트선재센터",
+      "location": "서울시 마포구",
+      "startDate": "2026-05-25",
+      "endDate": "2026-11-30",
+      "description": "환경 문제에 응답하는 예술작품들을 통해 사회적 책임감을 담은 미술의 역할을 재조명합니다.",
+      "curator": "이혜원",
+      "artists": ["송상희", "박진아", "이영호", "김경훈"],
+      "genres": ["설치미술", "영상", "퍼포먼스"],
+      "imageUrl": "https://via.placeholder.com/300x400?text=Art+Sonje",
+      "link": "https://www.artsonje.org"
+    }
+  ]
+}

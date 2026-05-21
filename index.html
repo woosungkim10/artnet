@@ -382,6 +382,125 @@
             background: var(--white);
         }
 
+        /* ===== EXHIBITIONS ===== */
+        #exhibitions {
+            background: var(--gray-1);
+        }
+
+        .filter-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--gray-3);
+            background: var(--white);
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+
+        .exhibitions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .exhibition-card {
+            background: var(--white);
+            border: 1px solid var(--gray-2);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .exhibition-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(212, 165, 116, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .exhibition-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--accent-lighter), var(--gray-1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            overflow: hidden;
+        }
+
+        .exhibition-content {
+            padding: 1.5rem;
+        }
+
+        .exhibition-museum {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .exhibition-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--black);
+            line-height: 1.4;
+        }
+
+        .exhibition-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--gray-5);
+        }
+
+        .exhibition-genres {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .genre-tag {
+            display: inline-block;
+            background: var(--accent-lighter);
+            color: var(--accent-dark);
+            padding: 0.3rem 0.7rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .exhibition-curators {
+            font-size: 0.85rem;
+            color: var(--gray-5);
+            margin-top: 0.8rem;
+            border-top: 1px solid var(--gray-2);
+            padding-top: 0.8rem;
+        }
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -721,6 +840,22 @@
         </div>
     </section>
 
+    <!-- Exhibitions Section -->
+    <section id="exhibitions" class="section">
+        <h2 class="section-title">전시 둘러보기</h2>
+        <p class="section-subtitle">국내 주요 미술관의 현재 전시 정보</p>
+
+        <div class="filter-section">
+            <button class="filter-btn active" onclick="filterExhibitions('all')">전체</button>
+            <button class="filter-btn" onclick="filterExhibitions('museum')">미술관별</button>
+            <button class="filter-btn" onclick="filterExhibitions('genre')">장르별</button>
+        </div>
+
+        <div class="exhibitions-grid" id="exhibitionsGrid">
+            <!-- JavaScript로 동적으로 생성됨 -->
+        </div>
+    </section>
+
     <!-- About Section -->
     <section id="about" class="section">
         <div class="about-container">
@@ -892,6 +1027,76 @@
     </div>
 
     <script>
+        let allExhibitions = [];
+
+        // 전시 데이터 로드
+        async function loadExhibitions() {
+            try {
+                const response = await fetch('exhibitions.json');
+                const data = await response.json();
+                allExhibitions = data.exhibitions;
+                displayExhibitions(allExhibitions);
+            } catch (error) {
+                console.log('전시 데이터 로드 중 오류:', error);
+                // 오류 시 기본 데이터 사용
+                displayExhibitions(allExhibitions);
+            }
+        }
+
+        // 전시 표시
+        function displayExhibitions(exhibitions) {
+            const grid = document.getElementById('exhibitionsGrid');
+            grid.innerHTML = exhibitions.map(ex => `
+                <div class="exhibition-card" onclick="showExhibitionDetail('${ex.id}')">
+                    <div class="exhibition-image">
+                        <span>${ex.museum.substring(0, 4)}</span>
+                    </div>
+                    <div class="exhibition-content">
+                        <div class="exhibition-museum">${ex.museum}</div>
+                        <h3 class="exhibition-title">${ex.name}</h3>
+                        <div class="exhibition-meta">
+                            <div>📅 ${ex.startDate} ~ ${ex.endDate}</div>
+                            <div>📍 ${ex.location}</div>
+                        </div>
+                        <div class="exhibition-genres">
+                            ${ex.genres.map(g => `<span class="genre-tag">${g}</span>`).join('')}
+                        </div>
+                        <div class="exhibition-curators">
+                            <strong>큐레이터:</strong> ${ex.curator}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 전시 상세 보기 (추후 구현)
+        function showExhibitionDetail(exhibitionId) {
+            const exhibition = allExhibitions.find(ex => ex.id === exhibitionId);
+            if (exhibition) {
+                alert(`${exhibition.name}\n\n${exhibition.description}\n\nMore details coming soon!`);
+            }
+        }
+
+        // 필터링
+        function filterExhibitions(type) {
+            // 버튼 활성화 업데이트
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // 필터링 로직
+            if (type === 'all') {
+                displayExhibitions(allExhibitions);
+            } else if (type === 'museum') {
+                // 미술관별로 그룹화하려면 추가 구현 필요
+                displayExhibitions(allExhibitions);
+            } else if (type === 'genre') {
+                // 장르별로 그룹화하려면 추가 구현 필요
+                displayExhibitions(allExhibitions);
+            }
+        }
+
         function openModal(modalType) {
             const modalMap = {
                 'login': 'loginModal',
@@ -932,6 +1137,9 @@
                 form.closest('.modal').classList.remove('active');
             });
         });
+
+        // 페이지 로드 시 전시 데이터 로드
+        document.addEventListener('DOMContentLoaded', loadExhibitions);
     </script>
 </body>
 </html>
